@@ -3,10 +3,10 @@ project "Engine"
     language "C++"
     cppdialect "C++17"
     staticruntime "off"
-    architecture "x86_64"
+    architecture "64"
 
-    targetdir ("bin/" .. OutputDir .. "/%{prj.name}")
-    objdir ("bin-int/" .. OutputDir .. "/%{prj.name}")
+    targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
+    objdir ("../bin-int/" .. OutputDir .. "/%{prj.name}")
 
     files {
         "**.h",
@@ -29,11 +29,11 @@ project "Engine"
         "shell32"     
     }
 
-    defines { "ENGINE_BUILD_DLL", "ENGINE_PLATFORM_WINDOWS"}
 
 
     filter "system:windows"
         systemversion "latest"
+        defines { "ENGINE_BUILD_DLL", "ENGINE_PLATFORM_WINDOWS"}
 
     filter "configurations:Debug"
         runtime "Debug"

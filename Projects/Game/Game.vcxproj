@@ -42,15 +42,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>bin\windows-x86_64\Debug\Game\</OutDir>
-    <IntDir>bin-int\windows-x86_64\Debug\Game\</IntDir>
+    <OutDir>..\bin\windows-x86_64\Debug\Game\</OutDir>
+    <IntDir>..\bin-int\windows-x86_64\Debug\Game\</IntDir>
     <TargetName>Game</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>bin\windows-x86_64\Release\Game\</OutDir>
-    <IntDir>bin-int\windows-x86_64\Release\Game\</IntDir>
+    <OutDir>..\bin\windows-x86_64\Release\Game\</OutDir>
+    <IntDir>..\bin-int\windows-x86_64\Release\Game\</IntDir>
     <TargetName>Game</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
@@ -73,7 +73,7 @@
       <AdditionalLibraryDirectories>..\..\Dependencies\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\Engine\bin\windows-x86_64\Debug\Engine\Engine.dll\ (xcopy /Q /E /Y /I ..\Engine\bin\windows-x86_64\Debug\Engine\Engine.dll bin\windows-x86_64\Debug\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\Engine\bin\windows-x86_64\Debug\Engine\Engine.dll bin\windows-x86_64\Debug\Game &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\windows-x86_64\Debug\Engine\Engine.dll\ (xcopy /Q /E /Y /I ..\bin\windows-x86_64\Debug\Engine\Engine.dll ..\bin\windows-x86_64\Debug\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\windows-x86_64\Debug\Engine\Engine.dll ..\bin\windows-x86_64\Debug\Game &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -99,7 +99,7 @@
       <AdditionalLibraryDirectories>..\..\Dependencies\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\Engine\bin\windows-x86_64\Release\Engine\Engine.dll\ (xcopy /Q /E /Y /I ..\Engine\bin\windows-x86_64\Release\Engine\Engine.dll bin\windows-x86_64\Release\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\Engine\bin\windows-x86_64\Release\Engine\Engine.dll bin\windows-x86_64\Release\Game &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\windows-x86_64\Release\Engine\Engine.dll\ (xcopy /Q /E /Y /I ..\bin\windows-x86_64\Release\Engine\Engine.dll ..\bin\windows-x86_64\Release\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\windows-x86_64\Release\Engine\Engine.dll ..\bin\windows-x86_64\Release\Game &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

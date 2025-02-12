@@ -42,15 +42,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>bin\windows-x86_64\Debug\Engine\</OutDir>
-    <IntDir>bin-int\windows-x86_64\Debug\Engine\</IntDir>
+    <OutDir>..\bin\windows-x86_64\Debug\Engine\</OutDir>
+    <IntDir>..\bin-int\windows-x86_64\Debug\Engine\</IntDir>
     <TargetName>Engine</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>bin\windows-x86_64\Release\Engine\</OutDir>
-    <IntDir>bin-int\windows-x86_64\Release\Engine\</IntDir>
+    <OutDir>..\bin\windows-x86_64\Release\Engine\</OutDir>
+    <IntDir>..\bin-int\windows-x86_64\Release\Engine\</IntDir>
     <TargetName>Engine</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
@@ -71,7 +71,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;gdi32.lib;user32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\Dependencies\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>bin\windows-x86_64\Debug\Engine\Engine.lib</ImportLibrary>
+      <ImportLibrary>..\bin\windows-x86_64\Debug\Engine\Engine.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -95,7 +95,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;gdi32.lib;user32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\Dependencies\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>bin\windows-x86_64\Release\Engine\Engine.lib</ImportLibrary>
+      <ImportLibrary>..\bin\windows-x86_64\Release\Engine\Engine.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

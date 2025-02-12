@@ -3,11 +3,11 @@ project "Game"
     language "C++"
     cppdialect "C++17"
     staticruntime "off"
-    architecture "x86_64"
+    architecture "64"
 
 
-    targetdir ("bin/" .. OutputDir .. "/%{prj.name}")
-    objdir ("bin-int/" .. OutputDir .. "/%{prj.name}")
+    targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
+    objdir ("../bin-int/" .. OutputDir .. "/%{prj.name}")
 
     files {
         "src/**.h",
@@ -29,14 +29,14 @@ project "Game"
     }
 
     postbuildcommands {
-        "{COPY} ../Engine/bin/" .. OutputDir .. "/Engine/Engine.dll %{cfg.targetdir}"
+        "{COPY} ../bin/" .. OutputDir .. "/Engine/Engine.dll %{cfg.targetdir}"
     }
 
-    defines {"ENGINE_PLATFORM_WINDOWS"}
 
 
     filter "system:windows"
         systemversion "latest"
+        defines {"ENGINE_PLATFORM_WINDOWS"}
 
     filter "configurations:Debug"
         runtime "Debug"
