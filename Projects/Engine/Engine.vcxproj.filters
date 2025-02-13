@@ -19,6 +19,12 @@
     <ClInclude Include="src\Engine\Logger.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="src\Engine\Events\Event.h" />
+    <ClInclude Include="src\Engine\Events\KeyEvent.h" />
+    <ClInclude Include="src\Engine\Events\MouseEvent.h" />
+    <ClInclude Include="src\Engine\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Engine\Windows\Window.h" />
+    <ClInclude Include="src\Engine\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Application.cpp">
@@ -27,5 +33,6 @@
     <ClCompile Include="src\Engine\Logger.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="src\Engine\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>

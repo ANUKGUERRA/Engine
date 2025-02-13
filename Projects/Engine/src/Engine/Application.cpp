@@ -1,18 +1,19 @@
 #include "Application.h"
-#include <iostream>
+#include <GLFW/glfw3.h>
 
 namespace Engine {
-	Application::Application()
-	{
-	}
+    Application::Application() {
+        m_Window.reset(Window::Create());
+        Logger::Log("Application initialized", LogLevel::INFO);
+    }
 
-	Application::~Application()
-	{
-	}
+    Application::~Application() {
+        Logger::Log("Application shutdown", LogLevel::INFO);
+    }
 
-	void Application::Run()
-	{
-		while (true) {
-		}
-	}
+    void Application::Run() {
+        while (m_Running) {
+            m_Window->OnUpdate();
+        }
+    }
 }

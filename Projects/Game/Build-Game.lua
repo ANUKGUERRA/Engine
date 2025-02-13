@@ -3,7 +3,7 @@ project "Game"
     language "C++"
     cppdialect "C++17"
     staticruntime "off"
-    architecture "64"
+    architecture "x64"
 
 
     targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")

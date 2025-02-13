@@ -1,5 +1,4 @@
 #include "Engine.h"
-
 class Editor : public Engine::Application
 {
 public:

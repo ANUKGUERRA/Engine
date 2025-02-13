@@ -3,7 +3,7 @@ project "Engine"
     language "C++"
     cppdialect "C++17"
     staticruntime "off"
-    architecture "64"
+    architecture "x64"
 
     targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
     objdir ("../bin-int/" .. OutputDir .. "/%{prj.name}")
@@ -23,10 +23,7 @@ project "Engine"
     }
     links {
         "glfw3",      -- GLFW library
-        "opengl32",   -- OpenGL
-        "gdi32",      -- Windows graphics device interface
-        "user32",     -- Windows user interface
-        "shell32"     
+        "opengl32",   -- OpenGL  
     }
 
 
