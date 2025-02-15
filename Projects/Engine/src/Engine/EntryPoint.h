@@ -3,10 +3,10 @@
 
 #ifdef ENGINE_PLATFORM_WINDOWS
 
-extern Engine::Application* Engine::CreateApplication();
+extern Application* CreateApplication();
 
 int main() {
-	auto app = Engine::CreateApplication();
+	auto app = CreateApplication();
 	app->Run();
 	delete app;
 	return 0;

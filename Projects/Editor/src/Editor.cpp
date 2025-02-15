@@ -1,5 +1,5 @@
 #include "Engine.h"
-class Editor : public Engine::Application
+class Editor : public Application
 {
 public:
 	Editor()
@@ -13,7 +13,7 @@ public:
 };
 
 
-Engine::Application* Engine::CreateApplication()
+Application* CreateApplication()
 {
 	return new Editor();
 }

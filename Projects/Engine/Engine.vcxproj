@@ -59,18 +59,18 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ENGINE_BUILD_DLL;ENGINE_PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\..\Dependencies\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\..\Dependencies\GLFW\include;C:\Dev\VulkanSDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;gdi32.lib;user32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\Dependencies\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Dependencies\GLFW\lib;C:\Dev\VulkanSDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\windows-x86_64\Debug\Engine\Engine.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -79,26 +79,27 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ENGINE_BUILD_DLL;ENGINE_PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\..\Dependencies\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\..\Dependencies\GLFW\include;C:\Dev\VulkanSDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;gdi32.lib;user32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\Dependencies\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Dependencies\GLFW\lib;C:\Dev\VulkanSDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\windows-x86_64\Release\Engine\Engine.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GenericTodo.h" />
     <ClInclude Include="src\Engine.h" />
     <ClInclude Include="src\Engine\Application.h" />
     <ClInclude Include="src\Engine\Core.h" />
@@ -108,12 +109,17 @@
     <ClInclude Include="src\Engine\Events\KeyEvent.h" />
     <ClInclude Include="src\Engine\Events\MouseEvent.h" />
     <ClInclude Include="src\Engine\Logger.h" />
+    <ClInclude Include="src\Engine\Renderer\OpenGL\OpenGlContext.h" />
+    <ClInclude Include="src\Engine\Renderer\RenderContext.h" />
+    <ClInclude Include="src\Engine\Renderer\Vulkan\VulkanContext.h" />
     <ClInclude Include="src\Engine\Windows\Window.h" />
     <ClInclude Include="src\Engine\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Application.cpp" />
-    <ClCompile Include="src\Engine\Logger.cpp" />
+    <ClCompile Include="src\Engine\Renderer\OpenGL\OpenGlConext.cpp" />
+    <ClCompile Include="src\Engine\Renderer\RenderContext.cpp" />
+    <ClCompile Include="src\Engine\Renderer\Vulkan\VulkanContext.cpp" />
     <ClCompile Include="src\Engine\Windows\WindowsWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

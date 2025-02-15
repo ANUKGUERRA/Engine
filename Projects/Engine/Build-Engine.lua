@@ -1,7 +1,7 @@
 project "Engine"
     kind "SharedLib"  -- DLL Project
     language "C++"
-    cppdialect "C++17"
+    cppdialect "C++20"
     staticruntime "off"
     architecture "x64"
 
@@ -15,18 +15,20 @@ project "Engine"
 
     includedirs {
         "src",
-        "../../Dependencies/GLFW/include"
+        "../../Dependencies/GLFW/include",
+        path.join(os.getenv("VULKAN_SDK"), "include")  -- Vulkan include dir
     }
 
     libdirs {
-        "../../Dependencies/GLFW/lib"  
+        "../../Dependencies/GLFW/lib",
+        path.join(os.getenv("VULKAN_SDK"), "lib")  -- Vulkan lib dir
     }
+
     links {
         "glfw3",      -- GLFW library
         "opengl32",   -- OpenGL  
+        "vulkan-1"    -- Vulkan library
     }
-
-
 
     filter "system:windows"
         systemversion "latest"

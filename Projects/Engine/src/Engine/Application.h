@@ -1,20 +1,24 @@
-#pragma once
+    #pragma once
+#include <memory>
 #include "Core.h"
 #include "Windows/Window.h"
-#include <memory>
+#include "Renderer/RenderContext.h"
 
-namespace Engine {
-    class ENGINE_API Application {
-    public:
-        Application();
-        virtual ~Application();
+class ENGINE_API Application {
+public:
+    Application(RenderAPI api = RenderAPI::Vulkan);
+    virtual ~Application();
 
-        void Run();
+    void Run();
 
-    private:
-        std::unique_ptr<Window> m_Window;
-        bool m_Running = true;
-    };
+private:
+	void SetRenderAPI(RenderAPI api);//TODO: Add the option for the user to switch between APIs by pressing a key or in UI(This Method is not used anywhere yet)
 
-    Application* CreateApplication();
-}
+    std::unique_ptr<Window> m_Window;
+    std::unique_ptr<RenderContext> m_RenderContext;
+
+    RenderAPI m_CurrentAPI;
+    bool m_Running = true;
+};
+
+Application* CreateApplication();

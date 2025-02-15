@@ -1,6 +1,6 @@
 #include "Engine.h"
 
-class Game : public Engine::Application
+class Game : public Application
 {
 public:
 	Game()
@@ -14,7 +14,7 @@ public:
 };
 
 
-Engine::Application* Engine::CreateApplication()
+Application* CreateApplication()
 {
 	return new Game();
 }
