@@ -18,9 +18,10 @@ void Application::SetRenderAPI(RenderAPI api) {
         return;
     }
 
+    m_RenderContext.reset(RenderContext::Create(api));
+
     LOG_INFO("Switched from {} renderer to  {} renderer", RenderAPIToString(m_CurrentAPI), RenderAPIToString(api));
 
-    m_RenderContext.reset(RenderContext::Create(api));
 
     m_CurrentAPI = api;
 }

@@ -10,9 +10,9 @@ public:
     virtual ~Application();
 
     void Run();
+	void SetRenderAPI(RenderAPI api);//TODO: Add the option for the user to switch between APIs by pressing a key or in UI(This Method is not used anywhere yet)
 
 private:
-	void SetRenderAPI(RenderAPI api);//TODO: Add the option for the user to switch between APIs by pressing a key or in UI(This Method is not used anywhere yet)
 
     std::unique_ptr<Window> m_Window;
     std::unique_ptr<RenderContext> m_RenderContext;

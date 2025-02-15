@@ -29,6 +29,8 @@ project "Editor"
         "glfw3"
     }
 
+    dependson { "Engine" }
+
     postbuildcommands {
         "{COPY} ../bin/" .. OutputDir .. "/Engine/Engine.dll %{cfg.targetdir}"
     }
