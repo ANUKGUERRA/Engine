@@ -87,14 +87,12 @@
     <ClCompile Include="src\Engine\Renderer\OpenGL\OpenGlConext.cpp">
       <Filter>src\Engine\Renderer\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Renderer\RenderContext.cpp">
-      <Filter>src\Engine\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="src\Engine\Renderer\Vulkan\VulkanContext.cpp">
       <Filter>src\Engine\Renderer\Vulkan</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Windows\WindowsWindow.cpp">
       <Filter>src\Engine\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Engine\Renderer\RenderContext.cpp" />
   </ItemGroup>
 </Project>

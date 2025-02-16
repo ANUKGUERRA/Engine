@@ -9,8 +9,6 @@ public:
 	VulkanContext();
 	~VulkanContext();
 
-	void Init() override;
-	void Shutdown() override;
 	void BeginFrame() override;
 	void EndFrame() override;
 
@@ -18,8 +16,10 @@ public:
 private:
 
 	void CreateInstance();
+	void pickPhysicalDevice();
 
 	VkInstance m_Instance;
+	VkPhysicalDevice m_PhysicalDevice;
 
 };
 

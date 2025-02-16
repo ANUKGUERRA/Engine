@@ -8,11 +8,20 @@
 
 VulkanContext::VulkanContext() {
 	CreateInstance();
+	pickPhysicalDevice();
 }
 
 VulkanContext::~VulkanContext(){
 	vkDestroyInstance(m_Instance, nullptr);
 	LOG_SUCCESS("Vulkan Instance destroyed.");
+}
+
+
+void VulkanContext::BeginFrame() {
+
+}
+void VulkanContext::EndFrame() {
+
 }
 
 void VulkanContext::CreateInstance()
@@ -58,15 +67,25 @@ void VulkanContext::CreateInstance()
 
 }
 
-void VulkanContext::Init() {
-}
-void VulkanContext::Shutdown() {
+void VulkanContext::pickPhysicalDevice() {
+	unsigned int deviceCount = 0;
+	vkEnumeratePhysicalDevices(m_Instance, &deviceCount, nullptr);
 
-}
-void VulkanContext::BeginFrame() {
+	if (deviceCount == 0)
+	{
+		LOG_ERROR("Failed to find GPUs with Vulkan support!");
+		return;
+	}
 
-}
-void VulkanContext::EndFrame() {
+	std::vector<VkPhysicalDevice> devices(deviceCount);
+	vkEnumeratePhysicalDevices(m_Instance, &deviceCount, devices.data());
 
-}
+	LOG_INFO("Available Devices:");
+	for (const auto& device : devices)
+	{
+		VkPhysicalDeviceProperties deviceProperties;
+		vkGetPhysicalDeviceProperties(device, &deviceProperties);
 
+		LOG_INFO("Device Name: {0}", deviceProperties.deviceName);
+	}
+}

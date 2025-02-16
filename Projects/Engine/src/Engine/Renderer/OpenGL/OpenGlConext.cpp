@@ -4,7 +4,8 @@
 
 OpenGLContext::OpenGLContext() {
     InitGlad();
-	Init();
+    LOG_INFO("OpenGLContext initialized.");
+	glClearColor(1.f, 1.f, 0.f, 1.0f);//Color to distingush from Vulkan renderer
 }
 
 OpenGLContext::~OpenGLContext() {
@@ -15,14 +16,6 @@ void OpenGLContext::InitGlad() {
         LOG_ERROR("Failed to initialize GLAD");
     else
         LOG_INFO("GLAD initialized successfully!");
-}
-
-void OpenGLContext::Init() {
-    LOG_INFO("OpenGLContext initialized.");
-    glClearColor(1.f, 1.f, 0.f, 1.0f); // Set background color
-}
-
-void OpenGLContext::Shutdown() {
 }
 
 void OpenGLContext::BeginFrame() {
