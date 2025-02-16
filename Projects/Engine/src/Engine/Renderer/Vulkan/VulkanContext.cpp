@@ -4,6 +4,17 @@
 
 #include <vector>
 
+
+
+VulkanContext::VulkanContext() {
+	CreateInstance();
+}
+
+VulkanContext::~VulkanContext(){
+	vkDestroyInstance(m_Instance, nullptr);
+	LOG_SUCCESS("Vulkan Instance destroyed.");
+}
+
 void VulkanContext::CreateInstance()
 {
 	VkApplicationInfo appInfo = {};
@@ -47,17 +58,7 @@ void VulkanContext::CreateInstance()
 
 }
 
-
-VulkanContext::VulkanContext() {
-	CreateInstance();
-}
-VulkanContext::~VulkanContext(){
-	vkDestroyInstance(m_Instance, nullptr);
-	LOG_SUCCESS("Vulkan Instance destroyed.");
-}
-
 void VulkanContext::Init() {
-
 }
 void VulkanContext::Shutdown() {
 

@@ -7,8 +7,7 @@ extern Application* CreateApplication();
 
 int main() {
 	auto app = CreateApplication();
-	//app->Run();
-	app->SetRenderAPI(RenderAPI::OpenGL);
+	app->Run();
 	delete app;
 	return 0;
 }

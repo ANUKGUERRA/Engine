@@ -19,10 +19,13 @@ void WindowsWindow::Init(const WindowData& data) {
 	}
 
 	//TODO: WinowHint: Puede cambiar dependiendo de la necesidad de vulakn, hacer pantalla Resizable ...
+	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	if (data.API == RenderAPI::OpenGL)
+		glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_API);
+	else if (data.API == RenderAPI::Vulkan)
+		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
 	m_Window = glfwCreateWindow(m_Data.Width, m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
 

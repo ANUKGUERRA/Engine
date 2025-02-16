@@ -2,13 +2,16 @@
 
 #include "../Core.h"
 #include "../Logger.h"
+#include "../Renderer/RenderContext.h"
 
 struct WindowData {
 	std::string Title;
 	int Width;
 	int Height;
 
-	WindowData(const std::string& title = "Engine", int width = 1280, int height = 720) : Title(title), Width(width), Height(height) {}
+	RenderAPI API;
+
+	WindowData(const std::string& title = "Engine", int width = 1280, int height = 720, RenderAPI api = RenderAPI::Vulkan) : Title(title), Width(width), Height(height), API(api) {}
 };
 
 

@@ -11,11 +11,13 @@ project "Engine"
     files {
         "**.h",
         "**.cpp",
+        "../../Dependencies/GLAD/src/glad.c"
     }
 
     includedirs {
         "src",
         "../../Dependencies/GLFW/include",
+        "../../Dependencies/GLAD/include",
         path.join(os.getenv("VULKAN_SDK"), "include")  -- Vulkan include dir
     }
 

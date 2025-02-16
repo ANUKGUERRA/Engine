@@ -4,6 +4,8 @@
 #include <iostream>
 #include "Core.h"
 
+
+//TODO: Logging is slow, should be option to disable it in release builds
 enum class LogLevel {
     INFO,
     WARNING,
