@@ -8,6 +8,8 @@ project "Engine"
     targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
     objdir ("../bin-int/" .. OutputDir .. "/%{prj.name}")
 
+    local vulkanSDK = os.getenv("VULKAN_SDK")
+
     files {
         "**.h",
         "**.cpp",
@@ -18,12 +20,12 @@ project "Engine"
         "src",
         "../../Dependencies/GLFW/include",
         "../../Dependencies/GLAD/include",
-        path.join(os.getenv("VULKAN_SDK"), "include")  -- Vulkan include dir
+        vulkanSDK .. "/include"    
     }
 
     libdirs {
         "../../Dependencies/GLFW/lib",
-        path.join(os.getenv("VULKAN_SDK"), "lib")  -- Vulkan lib dir
+        vulkanSDK .. "/lib"
     }
 
     links {
