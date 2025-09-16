@@ -1,5 +1,6 @@
 #include "VulkanContext.h"
 #include "ValidationLayers.h"
+#include "shader.h"
 #include <GLFW/glfw3.h>
 #include "../../Logger.h"
 #include "../../Application.h"
@@ -18,9 +19,14 @@ VulkanContext::VulkanContext() {
 	pickPhysicalDevice();
 	createLogicalDevice();
 	createSwapChain();
+	createImageViews();
+	createGraphicsPipeline();
 }
 
 VulkanContext::~VulkanContext(){
+	for (auto imageView : m_SwapChainImageViews) {
+		vkDestroyImageView(m_Device, imageView, nullptr);
+	}
 	vkDestroySwapchainKHR(m_Device, m_SwapChain, nullptr);
 	vkDestroyDevice(m_Device, nullptr);
 	if (enableValidationLayers) {
@@ -133,11 +139,11 @@ void VulkanContext::createSwapChain()
 
 
 	vkGetSwapchainImagesKHR(m_Device, m_SwapChain, &imageCount, nullptr);
-	m_swapChainImages.resize(imageCount);
-	vkGetSwapchainImagesKHR(m_Device, m_SwapChain, &imageCount, m_swapChainImages.data());
+	m_SwapChainImages.resize(imageCount);
+	vkGetSwapchainImagesKHR(m_Device, m_SwapChain, &imageCount, m_SwapChainImages.data());
 
-	m_swapChainImageFormat = surfaceFormat.format;
-	m_swapChainExtent = extent;
+	m_SwapChainImageFormat = surfaceFormat.format;
+	m_SwapChainExtent = extent;
 }
 
 SwapChainSupportDetails VulkanContext::querySwapChainSupport(VkPhysicalDevice device)
@@ -238,6 +244,35 @@ VkExtent2D VulkanContext::chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capab
 		return actualExtent;
 	}
 }
+
+void VulkanContext::createImageViews()
+{
+	m_SwapChainImageViews.resize(m_SwapChainImages.size());
+	for (size_t i = 0; i < m_SwapChainImages.size(); i++) {
+		VkImageViewCreateInfo createInfo{};
+		createInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
+		createInfo.image = m_SwapChainImages[i];
+
+		createInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
+		createInfo.format = m_SwapChainImageFormat;
+
+		createInfo.components.r = VK_COMPONENT_SWIZZLE_IDENTITY;
+		createInfo.components.g = VK_COMPONENT_SWIZZLE_IDENTITY;
+		createInfo.components.b = VK_COMPONENT_SWIZZLE_IDENTITY;
+		createInfo.components.a = VK_COMPONENT_SWIZZLE_IDENTITY;
+
+		createInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+		createInfo.subresourceRange.baseMipLevel = 0;
+		createInfo.subresourceRange.levelCount = 1;
+		createInfo.subresourceRange.baseArrayLayer = 0;
+		createInfo.subresourceRange.layerCount = 1;
+
+		if (vkCreateImageView(m_Device, &createInfo, nullptr, &m_SwapChainImageViews[i]) != VK_SUCCESS) {
+			throw std::runtime_error("failed to create image views!");
+		}
+	}
+}
+
 
 void VulkanContext::pickPhysicalDevice() {
 
@@ -367,4 +402,63 @@ void VulkanContext::createLogicalDevice()
 
 	vkGetDeviceQueue(m_Device, indices.graphicsFamily.value(), 0, &m_GraphicsQueue);
 	vkGetDeviceQueue(m_Device, indices.presentFamily.value(), 0, &m_PresentQueue);
+}
+
+void VulkanContext::createGraphicsPipeline()
+{
+	auto vertShaderCode = readFile("../../../../Engine/Shaders/SPIRV/shader.vert.spv");
+	auto fragShaderCode = readFile("../../../../Engine/Shaders/SPIRV/shader.frag.spv");
+
+	VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);
+	VkShaderModule fragShaderModule = createShaderModule(fragShaderCode);
+
+	VkPipelineShaderStageCreateInfo vertShaderStageInfo{};
+	vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+	vertShaderStageInfo.stage = VK_SHADER_STAGE_VERTEX_BIT;
+	vertShaderStageInfo.module = vertShaderModule;
+	vertShaderStageInfo.pName = "main";
+
+	VkPipelineShaderStageCreateInfo fragShaderStageInfo{};
+	fragShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+	fragShaderStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
+	fragShaderStageInfo.module = fragShaderModule;
+	fragShaderStageInfo.pName = "main";
+
+	VkPipelineShaderStageCreateInfo shaderStages[] = { vertShaderStageInfo, fragShaderStageInfo };
+
+	vkDestroyShaderModule(m_Device, fragShaderModule, nullptr);
+	vkDestroyShaderModule(m_Device, vertShaderModule, nullptr);
+}
+
+std::vector<char> VulkanContext::readFile(const std::string& filename)
+{
+	std::ifstream file(filename, std::ios::ate | std::ios::binary);
+
+	if (!file.is_open()) {
+		throw std::runtime_error("failed to open file!");
+	}
+
+	size_t fileSize = (size_t)file.tellg();
+	std::vector<char> buffer(fileSize);
+
+	file.seekg(0);
+	file.read(buffer.data(), fileSize);
+
+	file.close();
+
+	return buffer;
+}
+
+VkShaderModule VulkanContext::createShaderModule(const std::vector<char>& code)
+{
+	VkShaderModuleCreateInfo createInfo{};
+	createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	createInfo.codeSize = code.size();
+	createInfo.pCode = reinterpret_cast<const uint32_t*>(code.data());
+
+	VkShaderModule shaderModule;
+	if (vkCreateShaderModule(m_Device, &createInfo, nullptr, &shaderModule) != VK_SUCCESS) {
+		throw std::runtime_error("failed to create shader module!");
+	}
+	return shaderModule;
 }

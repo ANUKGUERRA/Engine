@@ -67,9 +67,18 @@ private:
 	VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
 	VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
 	VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
+	void createImageViews();
 	VkSwapchainKHR m_SwapChain;
-	std::vector<VkImage> m_swapChainImages;
-	VkFormat m_swapChainImageFormat;
-	VkExtent2D m_swapChainExtent;
+	std::vector<VkImage> m_SwapChainImages;
+	std::vector<VkImageView> m_SwapChainImageViews;
+	VkFormat m_SwapChainImageFormat;
+	VkExtent2D m_SwapChainExtent;
+
+	//Pipeline
+	void createGraphicsPipeline();
+
+	//Shaders
+	std::vector<char> readFile(const std::string& filename);
+	VkShaderModule createShaderModule(const std::vector<char>& code);
 };
 

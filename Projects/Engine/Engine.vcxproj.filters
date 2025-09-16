@@ -82,6 +82,7 @@
     <ClInclude Include="src\Engine\Windows\WindowsWindow.h">
       <Filter>src\Engine\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="src\Engine\Renderer\Vulkan\shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Dependencies\GLAD\src\glad.c">
@@ -105,5 +106,11 @@
     <ClCompile Include="src\Engine\Windows\WindowsWindow.cpp">
       <Filter>src\Engine\Windows</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\GLSL\shader.frag" />
+    <None Include="Shaders\GLSL\shader.vert" />
+    <None Include="Shaders\SPIRV\shader.frag.spv" />
+    <None Include="Shaders\SPIRV\shader.vert.spv" />
   </ItemGroup>
 </Project>
