@@ -67,7 +67,13 @@
     <ClInclude Include="src\Engine\Renderer\RenderContext.h">
       <Filter>src\Engine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Engine\Renderer\Vulkan\ValidationLayers.h">
+      <Filter>src\Engine\Renderer\Vulkan</Filter>
+    </ClInclude>
     <ClInclude Include="src\Engine\Renderer\Vulkan\VulkanContext.h">
+      <Filter>src\Engine\Renderer\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Renderer\Vulkan\instance.h">
       <Filter>src\Engine\Renderer\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Windows\Window.h">
@@ -89,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="src\Engine\Renderer\RenderContext.cpp">
       <Filter>src\Engine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Renderer\Vulkan\ValidationLayers.cpp">
+      <Filter>src\Engine\Renderer\Vulkan</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Renderer\Vulkan\VulkanContext.cpp">
       <Filter>src\Engine\Renderer\Vulkan</Filter>
