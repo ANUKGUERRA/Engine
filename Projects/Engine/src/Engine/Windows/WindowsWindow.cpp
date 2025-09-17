@@ -39,7 +39,7 @@ void WindowsWindow::Init(const WindowData& data) {
 
 void WindowsWindow::OnUpdate() {
 	glfwPollEvents();
-	glfwSwapBuffers(m_Window);
+	//glfwSwapBuffers(m_Window); Just for opengl
 }
 
 void WindowsWindow::Shutdown() {

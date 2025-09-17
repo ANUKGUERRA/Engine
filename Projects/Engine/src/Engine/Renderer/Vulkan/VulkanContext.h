@@ -74,8 +74,13 @@ private:
 	VkFormat m_SwapChainImageFormat;
 	VkExtent2D m_SwapChainExtent;
 
+	//RenderPass
+	void createRenderPass();
+	VkRenderPass m_RenderPass;
+
 	//Pipeline
 	void createGraphicsPipeline();
+	VkPipelineLayout m_PipelineLayout;
 
 	//Shaders
 	std::vector<char> readFile(const std::string& filename);
