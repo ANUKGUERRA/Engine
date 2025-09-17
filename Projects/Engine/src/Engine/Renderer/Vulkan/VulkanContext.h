@@ -80,10 +80,15 @@ private:
 
 	//Pipeline
 	void createGraphicsPipeline();
+	VkPipeline m_GraphicsPipeline;
 	VkPipelineLayout m_PipelineLayout;
 
 	//Shaders
 	std::vector<char> readFile(const std::string& filename);
 	VkShaderModule createShaderModule(const std::vector<char>& code);
+
+	//FrameBuffer
+	void createFramebuffers();
+	std::vector<VkFramebuffer> m_SwapChainFramebuffers;
 };
 
