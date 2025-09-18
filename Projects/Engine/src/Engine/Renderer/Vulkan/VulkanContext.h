@@ -90,5 +90,23 @@ private:
 	//FrameBuffer
 	void createFramebuffers();
 	std::vector<VkFramebuffer> m_SwapChainFramebuffers;
+
+	//Comand
+	void createCommandPool();
+	void createCommandBuffer();
+	void recordCommandBuffer(VkCommandBuffer commandBuffer, uint32_t imageIndex);
+	VkCommandPool m_CommandPool;
+	VkCommandBuffer m_CommandBuffer;
+
+	//Syncronization
+	void createSyncObjects();
+	VkSemaphore m_ImageAvailableSemaphore;
+	VkSemaphore m_RenderFinishedSemaphore;
+	VkFence m_InFlightFence;
+
+	float CurrentTime;
+	float LastTime;
+
+
 };
 
