@@ -1,0 +1,20 @@
+#pragma once
+#include "../Core.h"
+#include <string>
+
+enum class RenderAPI {
+	Vulkan = 0,
+	OpenGL = 1
+};
+
+std::string RenderAPIToString(RenderAPI api);
+
+class RenderContext
+{
+public:
+	virtual ~RenderContext() = default;
+	virtual void BeginFrame() = 0;
+	virtual void EndFrame() = 0;
+
+	static RenderContext* Create(RenderAPI api);
+};

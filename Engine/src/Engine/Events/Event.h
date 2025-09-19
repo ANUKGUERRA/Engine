@@ -1,0 +1,1 @@
+//TODO: ADD General events structure

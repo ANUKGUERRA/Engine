@@ -33,7 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GenericTodo.h" />
     <ClInclude Include="src\Engine.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -61,9 +60,6 @@
     <ClInclude Include="src\Engine\Logger.h">
       <Filter>src\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Renderer\OpenGL\OpenGlContext.h">
-      <Filter>src\Engine\Renderer\OpenGL</Filter>
-    </ClInclude>
     <ClInclude Include="src\Engine\Renderer\RenderContext.h">
       <Filter>src\Engine\Renderer</Filter>
     </ClInclude>
@@ -81,14 +77,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Dependencies\GLAD\src\glad.c">
-      <Filter>Dependencies\GLAD\src</Filter>
-    </ClCompile>
     <ClCompile Include="src\Engine\Application.cpp">
       <Filter>src\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\Renderer\OpenGL\OpenGlConext.cpp">
-      <Filter>src\Engine\Renderer\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Renderer\RenderContext.cpp">
       <Filter>src\Engine\Renderer</Filter>

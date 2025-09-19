@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{DBC7D3B0-C769-FE86-B024-12DB9C6585D7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Events">
+      <UniqueIdentifier>{5FAFB439-CB6F-3070-94AA-79ED002A754C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Renderer">
+      <UniqueIdentifier>{E1119970-4D9D-0635-56AE-8929C2B86235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Renderer\Vulkan">
+      <UniqueIdentifier>{411887A2-2D12-B0F4-167F-460502181661}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Windows">
+      <UniqueIdentifier>{151D2DBC-01EB-20C2-EA7E-91E8D6EBFC26}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Engine.h" />
+    <ClInclude Include="src\Engine\Application.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Core.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\EntryPoint.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Events\ApplicationEvent.h">
+      <Filter>Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Events\Event.h">
+      <Filter>Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Events\KeyEvent.h">
+      <Filter>Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Events\MouseEvent.h">
+      <Filter>Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Logger.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Renderer\RenderContext.h">
+      <Filter>Engine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Renderer\Vulkan\ValidationLayers.h">
+      <Filter>Engine\Renderer\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Renderer\Vulkan\VulkanContext.h">
+      <Filter>Engine\Renderer\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Windows\Window.h">
+      <Filter>Engine\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Windows\WindowsWindow.h">
+      <Filter>Engine\Windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Engine\Application.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Renderer\RenderContext.cpp">
+      <Filter>Engine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Renderer\Vulkan\ValidationLayers.cpp">
+      <Filter>Engine\Renderer\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Renderer\Vulkan\VulkanContext.cpp">
+      <Filter>Engine\Renderer\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Windows\WindowsWindow.cpp">
+      <Filter>Engine\Windows</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,8 +1,8 @@
 project "Engine"
-    kind "SharedLib"  -- DLL Project
+    kind "StaticLib"
     language "C++"
     cppdialect "C++20"
-    staticruntime "off"
+    staticruntime "on"
     architecture "x64"
 
     targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")

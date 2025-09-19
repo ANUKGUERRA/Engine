@@ -2,8 +2,8 @@
 setlocal
 
 :: Define paths relative to script location
-set SHADER_SRC=..\Projects\Engine\Shaders\GLSL
-set SHADER_BIN=..\Projects\Engine\Shaders\SPIRV
+set SHADER_SRC=..\Engine\Shaders\GLSL
+set SHADER_BIN=..\Engine\Shaders\SPIRV
 
 :: Use VULKAN_SDK if available, or fallback to hardcoded path
 set GLSLC="%VULKAN_SDK%\Bin\glslc.exe"
