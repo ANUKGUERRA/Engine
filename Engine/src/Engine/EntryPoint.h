@@ -1,8 +1,6 @@
 #pragma once
 
 
-#ifdef ENGINE_PLATFORM_WINDOWS
-
 extern Application* CreateApplication();
 
 int main() {
@@ -11,5 +9,3 @@ int main() {
 	delete app;
 	return 0;
 }
-
-#endif
