@@ -22,6 +22,8 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
+#include "Windows/Window.h"
+
 
 const int MAX_FRAMES_IN_FLIGHT = 2;
 
@@ -33,7 +35,7 @@ const std::vector<const char*> deviceExtensions = {
 	VK_KHR_SWAPCHAIN_EXTENSION_NAME
 };
 
-#ifdef W_DEBUG
+#ifdef DEBUG
 const bool enableValidationLayers = true;
 #else
 const bool enableValidationLayers = false;
@@ -156,21 +158,10 @@ const std::vector<uint16_t> indices = {
 	20, 21, 22, 22, 23, 20
 };
 
-struct WindowSpecs {
+struct AppSpecs {
 
     std::string Name = "Engine";
-    uint32_t Width = 1920;
-    uint32_t Height = 1080;
-
-    std::filesystem::path IconPath;
-
-    bool WindowResizeable = true;
-
-    bool CustomTitlebar = false;
-
-    bool UseDockspace = false;
-
-    bool CenterWindow = false;
+	std::string WorkingDirectory;
 };
 
 
@@ -179,7 +170,7 @@ struct WindowSpecs {
 class Application
 {
 public:
-	Application(const WindowSpecs& applicationSpecification = WindowSpecs());
+	Application(const AppSpecs& applicationSpecification = AppSpecs());
 	~Application();
 
 	static Application& Get();
@@ -194,7 +185,7 @@ private:
 	void Shutdown();
 
 private:
-	WindowSpecs m_Specification;
+	AppSpecs m_Specification;
 	GLFWwindow* m_WindowHandle = nullptr;
 	bool m_Running = false;
 
@@ -204,7 +195,7 @@ private:
 
 	bool framebufferResized = false;
 
-	GLFWwindow* window;
+	std::unique_ptr<Window> m_Window;
 
 	VkInstance instance;
 	VkDebugUtilsMessengerEXT debugMessenger;

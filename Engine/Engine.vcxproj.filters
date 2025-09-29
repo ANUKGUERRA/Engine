@@ -7,8 +7,14 @@
     <Filter Include="Engine\Events">
       <UniqueIdentifier>{5FAFB439-CB6F-3070-94AA-79ED002A754C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Renderer">
+      <UniqueIdentifier>{E1119970-4D9D-0635-56AE-8929C2B86235}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Engine\Windows">
       <UniqueIdentifier>{151D2DBC-01EB-20C2-EA7E-91E8D6EBFC26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Windows\WindowsOS">
+      <UniqueIdentifier>{9166B149-7D8B-00CA-A6D6-E559925AFFE7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -37,19 +43,28 @@
     <ClInclude Include="src\Engine\Logger.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="src\Engine\Renderer\Renderer.h">
+      <Filter>Engine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Engine\Windows\Window.h">
       <Filter>Engine\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Windows\WindowsWindow.h">
-      <Filter>Engine\Windows</Filter>
+    <ClInclude Include="src\Engine\Windows\WindowsOS\WindowsWindow.h">
+      <Filter>Engine\Windows\WindowsOS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Application.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Windows\WindowsWindow.cpp">
+    <ClCompile Include="src\Engine\Renderer\Renderer.cpp">
+      <Filter>Engine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Windows\Window.cpp">
       <Filter>Engine\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Windows\WindowsOS\WindowsWindow.cpp">
+      <Filter>Engine\Windows\WindowsOS</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

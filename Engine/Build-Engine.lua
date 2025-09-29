@@ -34,22 +34,28 @@ project "Engine"
    objdir ("../../bin-int/" .. outputdir .. "/%{prj.name}")
 
    filter "system:windows"
+      defines { "WINDOWS_OS" }
+      systemversion "latest"
+      buildoptions { "/utf-8" }
+
+   filter "system:linux"
+      defines { "LINUX_OS" }
       systemversion "latest"
       buildoptions { "/utf-8" }
 
    filter "configurations:Debug"
-      defines { "W_DEBUG" }
+      defines { "DEBUG" }
       runtime "Debug"
       symbols "On"
 
    filter "configurations:Release"
-      defines { "W_RELEASE" }
+      defines { "RELEASE" }
       runtime "Release"
       optimize "On"
       symbols "On"
 
    filter "configurations:Dist"
-      defines { "W_DIST" }
+      defines { "DIST" }
       runtime "Release"
       optimize "On"
       symbols "Off"

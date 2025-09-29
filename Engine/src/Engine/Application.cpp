@@ -7,21 +7,20 @@
 #include <chrono>
 #include "imgui_internal.h"
 
-#include <stdio.h>          // printf, fprintf
-#include <stdlib.h>         // abort
-
-
+#include <stdio.h>  
+#include <stdlib.h> 
 
 #include <iostream>
 
 static Application* s_Instance = nullptr;
 
-Application::Application(const WindowSpecs& specification)
-	: m_Specification(specification)
+Application::Application(const AppSpecs& specs)
+	: m_Specification(specs)
 {
 	s_Instance = this;
 
-	initWindow();
+	m_Window = Window::Create(WindowSpecs(m_Specification.Name));
+	//initWindow();
 	initVulkan();
 }
 
@@ -42,13 +41,14 @@ void Application::Run()
 }
 
 void Application::initWindow() {
-	glfwInit();
+	//glfwInit();
 
-	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	//glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
-	window = glfwCreateWindow(m_Specification.Width, m_Specification.Height, "Vulkan", nullptr, nullptr);
-	glfwSetWindowUserPointer(window, this);
-	glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
+
+	//window = glfwCreateWindow(m_Specification.Width, m_Specification.Height, "Vulkan", nullptr, nullptr);
+	//glfwSetWindowUserPointer(window, this);
+	//glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
 }
 
 void Application::framebufferResizeCallback(GLFWwindow* window, int width, int height) {
@@ -79,7 +79,7 @@ void Application::initVulkan() {
 }
 
 void Application::mainLoop() {
-	while (!glfwWindowShouldClose(window)) {
+	while (!glfwWindowShouldClose((GLFWwindow*)m_Window->GetWindow())) {
 		glfwPollEvents();
 		drawFrame();
 	}
@@ -141,16 +141,16 @@ void Application::cleanup() {
 	vkDestroySurfaceKHR(instance, surface, nullptr);
 	vkDestroyInstance(instance, nullptr);
 
-	glfwDestroyWindow(window);
+	glfwDestroyWindow((GLFWwindow*)m_Window->GetWindow());
 
 	glfwTerminate();
 }
 
 void Application::recreateSwapChain() {
 	int width = 0, height = 0;
-	glfwGetFramebufferSize(window, &width, &height);
+	glfwGetFramebufferSize((GLFWwindow*)m_Window->GetWindow(), &width, &height);
 	while (width == 0 || height == 0) {
-		glfwGetFramebufferSize(window, &width, &height);
+		glfwGetFramebufferSize((GLFWwindow*)m_Window->GetWindow(), &width, &height);
 		glfwWaitEvents();
 	}
 
@@ -223,7 +223,7 @@ void Application::setupDebugMessenger() {
 }
 
 void Application::createSurface() {
-	if (glfwCreateWindowSurface(instance, window, nullptr, &surface) != VK_SUCCESS) {
+	if (glfwCreateWindowSurface(instance, (GLFWwindow*)m_Window->GetWindow(), nullptr, &surface) != VK_SUCCESS) {
 		throw std::runtime_error("failed to create window surface!");
 	}
 }
@@ -823,15 +823,15 @@ void Application::updateUniformBuffer(uint32_t currentImage)
 		}
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) inputDirection.y += 1.0f;
-	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) inputDirection.y -= 1.0f;
-	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) inputDirection.x -= 1.0f;
-	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) inputDirection.x += 1.0f;
-	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) inputDirection.z += 1.0f;
-	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) inputDirection.z -= 1.0f;
+	if (glfwGetKey((GLFWwindow*)m_Window->GetWindow(), GLFW_KEY_W) == GLFW_PRESS) inputDirection.y += 1.0f;
+	if (glfwGetKey((GLFWwindow*)m_Window->GetWindow(), GLFW_KEY_S) == GLFW_PRESS) inputDirection.y -= 1.0f;
+	if (glfwGetKey((GLFWwindow*)m_Window->GetWindow(), GLFW_KEY_A) == GLFW_PRESS) inputDirection.x -= 1.0f;
+	if (glfwGetKey((GLFWwindow*)m_Window->GetWindow(), GLFW_KEY_D) == GLFW_PRESS) inputDirection.x += 1.0f;
+	if (glfwGetKey((GLFWwindow*)m_Window->GetWindow(), GLFW_KEY_Q) == GLFW_PRESS) inputDirection.z += 1.0f;
+	if (glfwGetKey((GLFWwindow*)m_Window->GetWindow(), GLFW_KEY_E) == GLFW_PRESS) inputDirection.z -= 1.0f;
 
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
+	if (glfwGetKey((GLFWwindow*)m_Window->GetWindow(), GLFW_KEY_ESCAPE) == GLFW_PRESS)
+		glfwSetWindowShouldClose((GLFWwindow*)m_Window->GetWindow(), true);
 
 	if (glm::length(inputDirection) > 0.0f) {
 		inputDirection = glm::normalize(inputDirection);
@@ -1040,7 +1040,7 @@ VkExtent2D Application::chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabil
 	}
 	else {
 		int width, height;
-		glfwGetFramebufferSize(window, &width, &height);
+		glfwGetFramebufferSize((GLFWwindow*)m_Window->GetWindow(), &width, &height);
 
 		VkExtent2D actualExtent = {
 			static_cast<uint32_t>(width),
